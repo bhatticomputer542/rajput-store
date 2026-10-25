@@ -13,34 +13,25 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         [x-cloak] { display: none !important; }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased" x-data="rajputStore()" x-init="initStore()">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-slate-900 text-white text-xs sm:text-sm py-2 px-4">
+    <!-- Announcement Bar -->
+    <div class="bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center gap-2 text-amber-400 font-semibold">
                 <i data-lucide="sparkles" class="w-4 h-4"></i>
                 <span>PROJECT BY AHMED RAJPUT</span>
-                <span class="text-slate-400 font-normal">| Official Online Store</span>
+                <span class="text-slate-400 font-normal">| Official Store</span>
             </div>
             <div class="flex items-center gap-4">
-                <span class="hidden md:inline text-slate-300">🎉 Use Code <span class="text-emerald-400 font-bold">RAJPUT15</span> for 15% OFF</span>
+                <span class="hidden md:inline text-slate-300">🎉 Code <span class="text-emerald-400 font-bold">RAJPUT15</span> for 15% OFF</span>
                 <button @click="openAdminModal()" class="text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-2.5 py-1 rounded transition flex items-center gap-1 border border-amber-500/30">
                     <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Owner Admin
                 </button>
@@ -52,22 +43,17 @@
     <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo -->
                 <div class="flex items-center gap-3 cursor-pointer" @click="resetFilters()">
-                    <div class="w-11 h-11 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-200">
-                        RS
-                    </div>
+                    <div class="w-11 h-11 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-200">RS</div>
                     <div>
                         <span class="text-2xl font-black text-slate-900 tracking-tight block leading-none">RAJPUT <span class="text-emerald-600">STORE</span></span>
                         <span class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Project by AHMED RAJPUT</span>
                     </div>
                 </div>
 
-                <!-- Search Bar (Desktop) -->
                 <div class="hidden md:flex flex-1 max-w-md mx-8">
                     <div class="relative w-full">
-                        <input type="text" x-model="searchQuery" placeholder="Search Pakistani lawn, earbuds, chappals..." class="w-full bg-slate-100 border border-slate-200 rounded-full py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition">
+                        <input type="text" x-model="searchQuery" placeholder="Search 45+ Pakistani lawn, earbuds, chappals, perfumes..." class="w-full bg-slate-100 border border-slate-200 rounded-full py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
                         <button x-show="searchQuery" @click="searchQuery = ''" class="absolute right-3 top-3 text-slate-400 hover:text-slate-600">
                             <i data-lucide="x" class="w-4 h-4"></i>
@@ -75,21 +61,15 @@
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <!-- My Orders Button -->
                     <button @click="openOrdersModal()" class="flex items-center gap-1.5 text-slate-700 hover:text-emerald-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-slate-100 transition">
                         <i data-lucide="package" class="w-5 h-5 text-emerald-600"></i>
                         <span class="hidden sm:inline">My Orders</span>
                     </button>
-
-                    <!-- Wishlist Button -->
                     <button @click="showWishlistModal = true" class="relative p-2.5 text-slate-700 hover:text-emerald-600 hover:bg-slate-100 rounded-full transition">
                         <i data-lucide="heart" class="w-6 h-6"></i>
                         <span x-show="wishlist.length > 0" x-text="wishlist.length" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow"></span>
                     </button>
-
-                    <!-- Cart Button -->
                     <button @click="showCartDrawer = true" class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-xl transition shadow-md shadow-emerald-100">
                         <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                         <span class="hidden sm:inline">Cart</span>
@@ -98,54 +78,41 @@
                 </div>
             </div>
 
-            <!-- Mobile Search Bar -->
             <div class="md:hidden pb-4">
                 <div class="relative w-full">
-                    <input type="text" x-model="searchQuery" placeholder="Search Pakistani products..." class="w-full bg-slate-100 border border-slate-200 rounded-full py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <input type="text" x-model="searchQuery" placeholder="Search 45+ items..." class="w-full bg-slate-100 border border-slate-200 rounded-full py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Hero Banner -->
+    <!-- Hero Banner -->
     <section class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white py-12 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
         <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="max-w-2xl text-center md:text-left">
                 <span class="inline-block bg-emerald-500/20 text-emerald-300 font-semibold text-xs px-3 py-1 rounded-full border border-emerald-500/30 mb-4">
-                    🇵🇰 Premium Online Shopping in Pakistan
+                    🇵🇰 Premium Pakistani Collection (45+ Items Available)
                 </span>
                 <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
-                    Quality Products at Fair <span class="text-emerald-400">Pakistani Prices</span>
+                    Fair Prices in <span class="text-emerald-400">Pakistani Rupees (PKR)</span>
                 </h1>
                 <p class="text-slate-300 text-sm sm:text-base mb-6">
-                    Designed and managed by <strong class="text-amber-400">AHMED RAJPUT</strong>. Cash on Delivery nationwide with hassle-free 7-day returns.
+                    Designed & managed by <strong class="text-amber-400">AHMED RAJPUT</strong>. Cash on Delivery nationwide with fast 2-4 day shipping across Pakistan.
                 </p>
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                    <button @click="selectedCategory = 'Fashion'" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-900/40">
-                        Explore Fashion
-                    </button>
-                    <button @click="selectedCategory = 'Electronics'" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 transition">
-                        Shop Electronics
-                    </button>
-                </div>
             </div>
-            
             <div class="w-full max-w-sm bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center">
                 <i data-lucide="truck" class="w-10 h-10 text-emerald-400 mx-auto mb-2"></i>
                 <h3 class="font-bold text-lg mb-1">Fast Delivery Across Pakistan</h3>
-                <p class="text-xs text-slate-300">Standard Delivery Fee: <strong>Rs. 250</strong> | Free Delivery on Orders Over <strong>Rs. 5,000</strong></p>
+                <p class="text-xs text-slate-300">Delivery Fee: <strong>Rs. 250</strong> | Free Delivery on Orders Over <strong>Rs. 5,000</strong></p>
             </div>
         </div>
     </section>
 
-    <!-- Content & Products Section -->
+    <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
-        <!-- Controls & Filter Bar -->
+        <!-- Filter Controls -->
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
-            <!-- Categories -->
             <div class="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 custom-scrollbar">
                 <template x-for="cat in categories" :key="cat">
                     <button @click="selectedCategory = cat" 
@@ -156,13 +123,11 @@
                 </template>
             </div>
 
-            <!-- Sorting & Price Slider -->
             <div class="flex flex-wrap items-center gap-4 w-full lg:w-auto justify-between lg:justify-end">
                 <div class="flex items-center gap-2 text-sm text-slate-600">
                     <span>Max Price: <strong class="text-emerald-700" x-text="formatPKR(maxPriceFilter)"></strong></span>
                     <input type="range" min="1000" max="25000" step="500" x-model="maxPriceFilter" class="accent-emerald-600">
                 </div>
-                
                 <select x-model="sortBy" class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <option value="featured">Featured First</option>
                     <option value="price-low">Price: Low to High</option>
@@ -176,21 +141,16 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" x-show="filteredProducts.length > 0">
             <template x-for="product in filteredProducts" :key="product.id">
                 <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group">
-                    
-                    <!-- Product Image Container -->
                     <div class="relative bg-slate-100 aspect-square overflow-hidden cursor-pointer" @click="openQuickView(product)">
                         <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        
                         <div class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow">
                             <span x-text="product.category"></span>
                         </div>
-
                         <button @click.stop="toggleWishlist(product.id)" class="absolute top-3 right-3 w-9 h-9 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-slate-600 hover:text-rose-500 shadow transition">
                             <i data-lucide="heart" :class="isInWishlist(product.id) ? 'fill-rose-500 text-rose-500' : ''" class="w-5 h-5"></i>
                         </button>
                     </div>
 
-                    <!-- Details -->
                     <div class="p-4 flex-1 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-1 text-amber-400 text-xs font-semibold mb-1">
@@ -220,14 +180,12 @@
             </template>
         </div>
 
-        <!-- Empty State -->
         <div x-show="filteredProducts.length === 0" class="text-center py-20 bg-white rounded-3xl border border-slate-200">
             <i data-lucide="search-x" class="w-16 h-16 text-slate-300 mx-auto mb-4"></i>
             <h3 class="text-xl font-bold text-slate-800 mb-1">No Products Found</h3>
             <p class="text-slate-500 text-sm mb-4">Try adjusting your search query or price filter.</p>
             <button @click="resetFilters()" class="bg-emerald-600 text-white font-semibold px-4 py-2 rounded-xl text-sm">Reset All Filters</button>
         </div>
-
     </main>
 
     <!-- Footer -->
@@ -236,10 +194,8 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <span class="text-2xl font-black text-white block mb-2">RAJPUT <span class="text-emerald-500">STORE</span></span>
-                    <p class="text-xs text-slate-400 mb-4">A complete e-commerce solution engineered for Pakistani customers with PKR pricing and nationwide Cash on Delivery.</p>
-                    <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-md border border-amber-500/30">
-                        Project by AHMED RAJPUT
-                    </span>
+                    <p class="text-xs text-slate-400 mb-4">Complete e-commerce store with 45+ items, fair PKR pricing, and Cash on Delivery.</p>
+                    <span class="inline-block bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-md border border-amber-500/30">Project by AHMED RAJPUT</span>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-3 text-base">Quick Links</h4>
@@ -250,17 +206,17 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-white mb-3 text-base">Accepted Payments</h4>
+                    <h4 class="font-bold text-white mb-3 text-base">Payment Methods</h4>
                     <ul class="space-y-2 text-xs">
                         <li>💵 Cash on Delivery (COD)</li>
                         <li>📱 JazzCash & EasyPaisa</li>
-                        <li>💳 Credit / Debit Cards</li>
+                        <li>💳 Debit / Credit Cards</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-white mb-3 text-base">Contact Support</h4>
-                    <p class="text-xs mb-2">Have a query regarding your order?</p>
-                    <a href="mailto:support@rajputstore.pk" class="text-emerald-400 hover:underline text-xs block font-mono">support@rajputstore.pk</a>
+                    <h4 class="font-bold text-white mb-3 text-base">Support</h4>
+                    <p class="text-xs mb-2">Have a question?</p>
+                    <a href="mailto:support@rajputstore.pk" class="text-emerald-400 text-xs block font-mono">support@rajputstore.pk</a>
                     <span class="text-xs text-slate-500 block mt-2">Lahore / Karachi / Islamabad, Pakistan</span>
                 </div>
             </div>
@@ -271,31 +227,26 @@
     </footer>
 
     <!-- Cart Drawer Modal -->
-    <div x-show="showCartDrawer" x-cloak class="fixed inset-0 z-50 overflow-hidden" x-transition:enter="transition opacity duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition opacity duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+    <div x-show="showCartDrawer" x-cloak class="fixed inset-0 z-50 overflow-hidden">
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" @click="showCartDrawer = false"></div>
         <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-                <!-- Cart Header -->
                 <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
                     <div class="flex items-center gap-2">
                         <i data-lucide="shopping-bag" class="w-5 h-5 text-emerald-600"></i>
                         <h2 class="font-bold text-slate-900 text-lg">Your Shopping Cart</h2>
                     </div>
-                    <button @click="showCartDrawer = false" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+                    <button @click="showCartDrawer = false" class="text-slate-400 hover:text-slate-600 p-1">
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                 </div>
-
-                <!-- Cart Items -->
                 <div class="flex-1 overflow-y-auto p-4 space-y-4">
                     <template x-if="cart.length === 0">
                         <div class="text-center py-16">
                             <i data-lucide="shopping-cart" class="w-16 h-16 text-slate-300 mx-auto mb-3"></i>
-                            <p class="text-slate-600 font-medium">Your cart is currently empty</p>
-                            <button @click="showCartDrawer = false" class="mt-4 text-emerald-600 font-bold text-sm">Start Shopping &rarr;</button>
+                            <p class="text-slate-600 font-medium">Your cart is empty</p>
                         </div>
                     </template>
-
                     <template x-for="item in cart" :key="item.id">
                         <div class="flex gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200 items-center">
                             <img :src="item.image" :alt="item.name" class="w-16 h-16 rounded-lg object-cover bg-white">
@@ -303,19 +254,15 @@
                                 <h4 class="font-bold text-slate-900 text-xs sm:text-sm" x-text="item.name"></h4>
                                 <span class="text-emerald-700 font-black text-xs sm:text-sm" x-text="formatPKR(item.price)"></span>
                                 <div class="flex items-center gap-2 mt-2">
-                                    <button @click="updateCartQty(item.id, -1)" class="w-6 h-6 bg-white border border-slate-300 rounded flex items-center justify-center text-xs font-bold">-</button>
-                                    <span class="text-xs font-bold text-slate-700" x-text="item.qty"></span>
-                                    <button @click="updateCartQty(item.id, 1)" class="w-6 h-6 bg-white border border-slate-300 rounded flex items-center justify-center text-xs font-bold">+</button>
+                                    <button @click="updateCartQty(item.id, -1)" class="w-6 h-6 bg-white border rounded font-bold">-</button>
+                                    <span class="text-xs font-bold" x-text="item.qty"></span>
+                                    <button @click="updateCartQty(item.id, 1)" class="w-6 h-6 bg-white border rounded font-bold">+</button>
                                 </div>
                             </div>
-                            <button @click="removeFromCart(item.id)" class="text-rose-400 hover:text-rose-600 p-1">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
+                            <button @click="removeFromCart(item.id)" class="text-rose-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                         </div>
                     </template>
                 </div>
-
-                <!-- Cart Summary & Checkout Trigger -->
                 <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-3" x-show="cart.length > 0">
                     <div class="flex justify-between text-xs text-slate-600">
                         <span>Subtotal:</span>
@@ -329,8 +276,7 @@
                         <span>Total Amount:</span>
                         <span class="text-emerald-700" x-text="formatPKR(cartGrandTotal)"></span>
                     </div>
-
-                    <button @click="showCartDrawer = false; showCheckoutModal = true" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-emerald-200 transition">
+                    <button @click="showCartDrawer = false; showCheckoutModal = true" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition">
                         Proceed to Checkout
                     </button>
                 </div>
@@ -339,29 +285,25 @@
     </div>
 
     <!-- Checkout Modal -->
-    <div x-show="showCheckoutModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto" x-transition>
+    <div x-show="showCheckoutModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" @click="showCheckoutModal = false"></div>
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 relative z-10 max-h-[90vh] overflow-y-auto">
-            <button @click="showCheckoutModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-
+            <button @click="showCheckoutModal = false" class="absolute top-4 right-4 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 class="text-xl font-black text-slate-900 mb-1">Complete Your Order</h2>
-            <p class="text-xs text-slate-500 mb-4">Provide your Pakistani delivery address to receive your order.</p>
-
+            <p class="text-xs text-slate-500 mb-4">Provide delivery details for shipment across Pakistan.</p>
             <form @submit.prevent="submitOrder()" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
-                    <input type="text" x-model="checkoutForm.name" required placeholder="e.g. Ahmed Khan" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm">
+                    <input type="text" x-model="checkoutForm.name" required placeholder="e.g. Ahmed Khan" class="w-full bg-slate-50 border rounded-xl p-2.5 text-sm">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Phone Number (Required for Tracking)</label>
-                        <input type="tel" x-model="checkoutForm.phone" required placeholder="03001234567" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Phone (Required for Tracking)</label>
+                        <input type="tel" x-model="checkoutForm.phone" required placeholder="03001234567" class="w-full bg-slate-50 border rounded-xl p-2.5 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">City</label>
-                        <select x-model="checkoutForm.city" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm font-medium">
+                        <select x-model="checkoutForm.city" required class="w-full bg-slate-50 border rounded-xl p-2.5 text-sm">
                             <option value="Lahore">Lahore</option>
                             <option value="Karachi">Karachi</option>
                             <option value="Islamabad">Islamabad</option>
@@ -376,59 +318,52 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Shipping Address</label>
-                    <textarea x-model="checkoutForm.address" required rows="2" placeholder="House/Flat No, Street, Sector/Area" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm"></textarea>
+                    <textarea x-model="checkoutForm.address" required rows="2" placeholder="House/Street/Area Address" class="w-full bg-slate-50 border rounded-xl p-2.5 text-sm"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Payment Method</label>
-                    <select x-model="checkoutForm.paymentMethod" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-sm font-medium">
+                    <select x-model="checkoutForm.paymentMethod" class="w-full bg-slate-50 border rounded-xl p-2.5 text-sm">
                         <option value="COD">💵 Cash on Delivery (COD)</option>
                         <option value="JazzCash">📱 JazzCash / EasyPaisa</option>
                         <option value="Card">💳 Credit / Debit Card</option>
                     </select>
                 </div>
-
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center text-sm">
-                    <span class="font-bold text-slate-700">Total Payable Amount:</span>
+                <div class="bg-slate-50 p-4 rounded-xl border flex justify-between items-center text-sm">
+                    <span class="font-bold text-slate-700">Total Payable:</span>
                     <span class="font-black text-emerald-700 text-base" x-text="formatPKR(cartGrandTotal)"></span>
                 </div>
-
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-200 transition">
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
                     Confirm & Place Order Now
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Customer My Orders Modal -->
+    <!-- Customer My Orders & Cancellation Modal -->
     <div x-show="showOrdersModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" @click="showOrdersModal = false"></div>
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 relative z-10 max-h-[90vh] overflow-y-auto">
-            <button @click="showOrdersModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-
+            <button @click="showOrdersModal = false" class="absolute top-4 right-4 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold">
                     <i data-lucide="package" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <h2 class="text-xl font-black text-slate-900">Track & Manage Orders</h2>
-                    <p class="text-xs text-slate-500">View your placed orders or cancel active orders</p>
+                    <p class="text-xs text-slate-500">Lookup your orders or cancel an order</p>
                 </div>
             </div>
 
-            <!-- Customer Phone Lookup -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex flex-col sm:flex-row gap-3">
-                <input type="tel" x-model="customerLookupPhone" placeholder="Enter your Phone No. (e.g. 03001234567)" class="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <div class="bg-slate-50 p-4 rounded-2xl border mb-6 flex flex-col sm:flex-row gap-3">
+                <input type="tel" x-model="customerLookupPhone" placeholder="Enter Phone No. (e.g. 03001234567)" class="flex-1 bg-white border rounded-xl px-3 py-2 text-sm">
                 <button @click="filterCustomerOrders()" class="bg-slate-900 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition">
-                    Find My Orders
+                    Find Orders
                 </button>
             </div>
 
-            <!-- Orders List -->
             <div class="space-y-4">
                 <template x-if="customerOrders.length === 0">
-                    <div class="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                    <div class="text-center py-10 bg-slate-50 rounded-2xl border border-dashed">
                         <i data-lucide="inbox" class="w-12 h-12 text-slate-300 mx-auto mb-2"></i>
                         <p class="text-slate-600 text-sm font-medium">No orders found for this phone number.</p>
                     </div>
@@ -436,12 +371,12 @@
 
                 <template x-for="ord in customerOrders" :key="ord.id">
                     <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm space-y-3">
-                        <div class="flex flex-wrap justify-between items-center border-b border-slate-100 pb-2">
+                        <div class="flex flex-wrap justify-between items-center border-b pb-2">
                             <div>
                                 <span class="font-bold text-slate-900 text-sm" x-text="'Order #' + ord.id"></span>
                                 <span class="text-xs text-slate-400 ml-2" x-text="ord.date"></span>
                             </div>
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full uppercase"
                                   :class="{
                                       'bg-amber-100 text-amber-800': ord.status === 'Pending',
                                       'bg-blue-100 text-blue-800': ord.status === 'Processing',
@@ -450,21 +385,16 @@
                                       'bg-rose-100 text-rose-800': ord.status === 'Cancelled'
                                   }" x-text="ord.status"></span>
                         </div>
-
                         <div class="text-xs space-y-1 text-slate-600">
                             <div><strong>Items:</strong> <span x-text="ord.itemsSummary"></span></div>
                             <div><strong>Deliver to:</strong> <span x-text="ord.customer.name + ' (' + ord.customer.city + ')'"></span></div>
-                            <div><strong>Payment:</strong> <span x-text="ord.customer.paymentMethod"></span></div>
                             <div><strong>Total:</strong> <strong class="text-emerald-700" x-text="formatPKR(ord.totalAmount)"></strong></div>
                         </div>
-
-                        <!-- Cancel Order Button (Available if Pending or Processing) -->
-                        <div class="pt-2 border-t border-slate-100 flex justify-end">
+                        <div class="pt-2 border-t flex justify-end">
                             <button x-show="ord.status === 'Pending' || ord.status === 'Processing'" @click="cancelCustomerOrder(ord.id)" class="bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs px-3 py-1.5 rounded-lg border border-rose-200 transition flex items-center gap-1">
-                                <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Cancel This Order
+                                <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Cancel Order
                             </button>
                             <span x-show="ord.status === 'Cancelled'" class="text-xs text-rose-500 font-medium">Order Cancelled</span>
-                            <span x-show="ord.status === 'Dispatched' || ord.status === 'Delivered'" class="text-xs text-slate-400 font-medium">Cannot cancel (Order already dispatched)</span>
                         </div>
                     </div>
                 </template>
@@ -476,44 +406,30 @@
     <div x-show="showAdminModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" @click="showAdminModal = false"></div>
         <div class="bg-white rounded-3xl max-w-4xl w-full p-6 relative z-10 max-h-[92vh] overflow-y-auto">
-            <button @click="showAdminModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-
-            <!-- Admin Password Login View -->
+            <button @click="showAdminModal = false" class="absolute top-4 right-4 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
             <div x-show="!isAdminLoggedIn" class="py-12 text-center max-w-sm mx-auto">
-                <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="shield-lock" class="w-8 h-8"></i>
-                </div>
+                <i data-lucide="shield-lock" class="w-10 h-10 text-amber-600 mx-auto mb-2"></i>
                 <h2 class="text-2xl font-black text-slate-900 mb-1">Owner Admin Portal</h2>
-                <p class="text-xs text-slate-500 mb-6">Enter password to access customer orders & analytics</p>
-                
+                <p class="text-xs text-slate-500 mb-6">Enter password to view and manage customer orders</p>
                 <form @submit.prevent="verifyAdminPassword()" class="space-y-3">
-                    <input type="password" x-model="adminPasswordInput" placeholder="Enter Owner Password" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-center font-bold tracking-widest focus:ring-2 focus:ring-emerald-500">
+                    <input type="password" x-model="adminPasswordInput" placeholder="Password" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 text-sm text-center font-bold">
                     <p x-show="adminError" class="text-xs text-rose-600 font-bold">Incorrect Password!</p>
-                    <button type="submit" class="w-full bg-slate-900 hover:bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-sm transition">
-                        Access Admin Dashboard
-                    </button>
-                    <p class="text-[11px] text-slate-400">Default password: <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-700">rajput123</code></p>
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-sm">Access Portal</button>
+                    <p class="text-[11px] text-slate-400">Password: <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-700">rajput123</code></p>
                 </form>
             </div>
 
-            <!-- Admin Dashboard Content -->
             <div x-show="isAdminLoggedIn" class="space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-200 pb-4">
+                <div class="flex justify-between items-center border-b pb-4">
                     <div>
-                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Store Admin Panel</span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Store Admin Panel</span>
                         <h2 class="text-2xl font-black text-slate-900">Manage Customer Orders</h2>
                     </div>
-                    <button @click="isAdminLoggedIn = false" class="text-xs text-slate-500 hover:text-slate-800 bg-slate-100 px-3 py-1.5 rounded-lg border">
-                        Logout Admin
-                    </button>
+                    <button @click="isAdminLoggedIn = false" class="text-xs bg-slate-100 px-3 py-1.5 rounded-lg border">Logout</button>
                 </div>
-
-                <!-- Metrics Overview -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
-                        <span class="text-xs text-emerald-700 font-semibold block">Total Revenue (Active Orders)</span>
+                        <span class="text-xs text-emerald-700 font-semibold block">Total Sales</span>
                         <span class="text-2xl font-black text-emerald-900" x-text="formatPKR(adminMetrics.totalRevenue)"></span>
                     </div>
                     <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
@@ -521,25 +437,23 @@
                         <span class="text-2xl font-black text-amber-900" x-text="adminMetrics.pendingCount"></span>
                     </div>
                     <div class="bg-blue-50 p-4 rounded-2xl border border-blue-200">
-                        <span class="text-xs text-blue-700 font-semibold block">Total Total Orders</span>
+                        <span class="text-xs text-blue-700 font-semibold block">Total Orders</span>
                         <span class="text-2xl font-black text-blue-900" x-text="allOrders.length"></span>
                     </div>
                 </div>
 
-                <!-- Admin Orders Table -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-                    <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-                        <h3 class="font-bold text-slate-800 text-sm">All Received Orders</h3>
-                        <button @click="clearAllOrders()" class="text-xs text-rose-600 hover:underline">Clear Order Log</button>
+                <div class="bg-white rounded-2xl border overflow-hidden">
+                    <div class="p-4 bg-slate-50 border-b flex justify-between items-center">
+                        <h3 class="font-bold text-slate-800 text-sm">Received Orders</h3>
+                        <button @click="clearAllOrders()" class="text-xs text-rose-600 hover:underline">Clear Orders</button>
                     </div>
-
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs text-slate-600">
-                            <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider">
+                            <thead class="bg-slate-100 text-slate-700 font-bold uppercase">
                                 <tr>
-                                    <th class="p-3">Order ID</th>
+                                    <th class="p-3">ID</th>
                                     <th class="p-3">Customer</th>
-                                    <th class="p-3">Phone / City</th>
+                                    <th class="p-3">Phone/City</th>
                                     <th class="p-3">Total</th>
                                     <th class="p-3">Status</th>
                                     <th class="p-3">Action</th>
@@ -547,9 +461,7 @@
                             </thead>
                             <tbody class="divide-y divide-slate-200">
                                 <template x-if="allOrders.length === 0">
-                                    <tr>
-                                        <td colspan="6" class="text-center py-8 text-slate-400">No customer orders placed yet.</td>
-                                    </tr>
+                                    <tr><td colspan="6" class="text-center py-8 text-slate-400">No orders yet.</td></tr>
                                 </template>
                                 <template x-for="ord in allOrders" :key="ord.id">
                                     <tr class="hover:bg-slate-50">
@@ -564,7 +476,7 @@
                                         </td>
                                         <td class="p-3 font-bold text-emerald-700" x-text="formatPKR(ord.totalAmount)"></td>
                                         <td class="p-3">
-                                            <select x-model="ord.status" @change="saveOrdersToStorage()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold">
+                                            <select x-model="ord.status" @change="saveOrdersToStorage()" class="bg-white border rounded px-2 py-1 text-xs font-semibold">
                                                 <option value="Pending">Pending</option>
                                                 <option value="Processing">Processing</option>
                                                 <option value="Dispatched">Dispatched</option>
@@ -583,19 +495,15 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Quick View Product Modal -->
+    <!-- Quick View Modal -->
     <div x-show="showQuickViewModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" @click="showQuickViewModal = false"></div>
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 relative z-10 max-h-[90vh] overflow-y-auto" x-show="activeProduct">
-            <button @click="showQuickViewModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-
+            <button @click="showQuickViewModal = false" class="absolute top-4 right-4 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
             <template x-if="activeProduct">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="bg-slate-100 rounded-2xl overflow-hidden aspect-square">
@@ -603,16 +511,14 @@
                     </div>
                     <div class="flex flex-col justify-between">
                         <div>
-                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider" x-text="activeProduct.category"></span>
+                            <span class="text-xs font-bold text-emerald-600 uppercase" x-text="activeProduct.category"></span>
                             <h2 class="text-xl font-bold text-slate-900 mt-1 mb-2" x-text="activeProduct.name"></h2>
                             <p class="text-slate-600 text-xs mb-4 leading-relaxed" x-text="activeProduct.description"></p>
-                            
                             <div class="flex items-baseline gap-2 mb-4">
                                 <span class="text-2xl font-black text-slate-900" x-text="formatPKR(activeProduct.price)"></span>
                                 <span x-show="activeProduct.oldPrice" class="text-sm text-slate-400 line-through" x-text="formatPKR(activeProduct.oldPrice)"></span>
                             </div>
                         </div>
-
                         <button @click="addToCart(activeProduct); showQuickViewModal = false" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
                             <i data-lucide="shopping-cart" class="w-5 h-5"></i> Add to Cart Now
                         </button>
@@ -622,7 +528,7 @@
         </div>
     </div>
 
-    <!-- Alpine.js Application Logic -->
+    <!-- Alpine.js Application Script -->
     <script>
         function rajputStore() {
             return {
@@ -649,93 +555,64 @@
                 adminPasswordInput: '',
                 adminError: false,
 
-                checkoutForm: {
-                    name: '',
-                    phone: '',
-                    city: 'Lahore',
-                    address: '',
-                    paymentMethod: 'COD'
-                },
+                checkoutForm: { name: '', phone: '', city: 'Lahore', address: '', paymentMethod: 'COD' },
 
-                categories: ['All', 'Fashion', 'Electronics', 'Footwear', 'Home & Living'],
+                categories: ['All', 'Fashion', 'Electronics', 'Footwear', 'Home & Living', 'Beauty & Personal Care', 'Accessories'],
 
                 products: [
-                    {
-                        id: 1,
-                        name: "3-Piece Embroidered Lawn Suit",
-                        category: "Fashion",
-                        price: 4999,
-                        oldPrice: 6500,
-                        rating: 4.9,
-                        reviewsCount: 42,
-                        image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
-                        description: "Premium summer lawn with intricate embroidered neckline, digital print dupatta, and dyed trousers."
-                    },
-                    {
-                        id: 2,
-                        name: "TWS Wireless Noise Cancelling Earbuds",
-                        category: "Electronics",
-                        price: 4499,
-                        oldPrice: 5999,
-                        rating: 4.8,
-                        reviewsCount: 88,
-                        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
-                        description: "Deep bass bluetooth earbuds with ENC noise reduction, 30-hour total battery life, and IPX5 waterproof rating."
-                    },
-                    {
-                        id: 3,
-                        name: "Traditional Handcrafted Peshawari Chappal",
-                        category: "Footwear",
-                        price: 3899,
-                        oldPrice: 4800,
-                        rating: 5.0,
-                        reviewsCount: 64,
-                        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
-                        description: "Authentic double-sole leather Peshawari chappal made by master artisans. Comfortable & durable."
-                    },
-                    {
-                        id: 4,
-                        name: "Men's Premium Cotton Kurta",
-                        category: "Fashion",
-                        price: 3499,
-                        oldPrice: 4200,
-                        rating: 4.7,
-                        reviewsCount: 31,
-                        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80",
-                        description: "100% Egyptian cotton gents kurta featuring neat stitching and mandarin collar styling."
-                    },
-                    {
-                        id: 5,
-                        name: "Smart Watch with Heart Rate & Call Alerts",
-                        category: "Electronics",
-                        price: 6999,
-                        oldPrice: 9500,
-                        rating: 4.6,
-                        reviewsCount: 112,
-                        image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=600&q=80",
-                        description: "Full HD touch screen smartwatch with custom watch faces, fitness tracking, and Bluetooth calling."
-                    },
-                    {
-                        id: 6,
-                        name: "Luxury Velvet Cushion Set (Pack of 4)",
-                        category: "Home & Living",
-                        price: 2800,
-                        oldPrice: 3500,
-                        rating: 4.9,
-                        reviewsCount: 19,
-                        image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
-                        description: "Ultra-soft plain velvet cushion covers with invisible zipper styling to elevate living room decor."
-                    }
+                    { id: 1, name: "3-Piece Embroidered Lawn Suit", category: "Fashion", price: 4999, oldPrice: 6500, rating: 4.9, reviewsCount: 42, image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80", description: "Premium summer lawn with embroidered neckline and digital dupatta." },
+                    { id: 2, name: "TWS Wireless Noise Cancelling Earbuds", category: "Electronics", price: 4499, oldPrice: 5999, rating: 4.8, reviewsCount: 88, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80", description: "Deep bass bluetooth earbuds with ENC noise reduction." },
+                    { id: 3, name: "Traditional Handcrafted Peshawari Chappal", category: "Footwear", price: 3899, oldPrice: 4800, rating: 5.0, reviewsCount: 64, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80", description: "Authentic double-sole leather Peshawari chappal." },
+                    { id: 4, name: "Men's Premium Cotton Kurta", category: "Fashion", price: 3499, oldPrice: 4200, rating: 4.7, reviewsCount: 31, image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80", description: "100% Egyptian cotton gents kurta with mandarin collar." },
+                    { id: 5, name: "Smart Watch with Bluetooth Calling", category: "Electronics", price: 6999, oldPrice: 9500, rating: 4.6, reviewsCount: 112, image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=600&q=80", description: "Full HD touch screen smartwatch with call capabilities." },
+                    { id: 6, name: "Luxury Velvet Cushion Set (Pack of 4)", category: "Home & Living", price: 2800, oldPrice: 3500, rating: 4.9, reviewsCount: 19, image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80", description: "Soft plain velvet cushion covers." },
+                    { id: 7, name: "Organic Oud Perfume Spray (100ml)", category: "Beauty & Personal Care", price: 3999, oldPrice: 5500, rating: 4.9, reviewsCount: 76, image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80", description: "Long-lasting rich Woody Arabian fragrance." },
+                    { id: 8, name: "Genuine Leather Gents Wallet", category: "Accessories", price: 1899, oldPrice: 2499, rating: 4.8, reviewsCount: 52, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80", description: "Slim bifold wallet with RFID blocking." },
+                    { id: 9, name: "Men's Casual Running Sneakers", category: "Footwear", price: 4299, oldPrice: 5800, rating: 4.5, reviewsCount: 39, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", description: "Lightweight breathable sport sneakers." },
+                    { id: 10, name: "Women's Embroidered Shawl", category: "Fashion", price: 2999, oldPrice: 4000, rating: 4.8, reviewsCount: 27, image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=600&q=80", description: "Warm cashmere wool mix embroidered shawl." },
+                    { id: 11, name: "Stainless Steel Air Fryer (4.5L)", category: "Home & Living", price: 14999, oldPrice: 18500, rating: 4.7, reviewsCount: 95, image: "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", description: "Oil-free low fat digital kitchen air fryer." },
+                    { id: 12, name: "Electric Coffee Bean Grinder", category: "Home & Living", price: 3499, oldPrice: 4500, rating: 4.6, reviewsCount: 41, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80", description: "Stainless steel blade precision spices & coffee grinder." },
+                    { id: 13, name: "High-Speed Power Bank 20000mAh", category: "Electronics", price: 3899, oldPrice: 4999, rating: 4.8, reviewsCount: 140, image: "https://images.unsplash.com/photo-1609592424074-124b455047b3?auto=format&fit=crop&w=600&q=80", description: "Fast 22.5W charging portable power bank." },
+                    { id: 14, name: "Pure Herbal Hair Oil (250ml)", category: "Beauty & Personal Care", price: 1499, oldPrice: 1999, rating: 4.9, reviewsCount: 63, image: "https://images.unsplash.com/photo-1608248597261-e4d0947c6b1e?auto=format&fit=crop&w=600&q=80", description: "Natural oil mix for hair growth & shine." },
+                    { id: 15, name: "Women's Heeled Sandals", category: "Footwear", price: 3299, oldPrice: 4500, rating: 4.6, reviewsCount: 18, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80", description: "Elegant block heel sandals for wedding & festive wear." },
+                    { id: 16, name: "UV Protection Polarized Sunglasses", category: "Accessories", price: 2199, oldPrice: 2999, rating: 4.7, reviewsCount: 45, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80", description: "Classic unisex aviator sunglasses." },
+                    { id: 17, name: "Classic Unstitched Linen Suit", category: "Fashion", price: 3800, oldPrice: 4800, rating: 4.7, reviewsCount: 22, image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80", description: "Soft winter linen printed 3-piece suit." },
+                    { id: 18, name: "Mechanical Gaming Keyboard RGB", category: "Electronics", price: 5499, oldPrice: 7200, rating: 4.8, reviewsCount: 79, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80", description: "Blue switch tactile mechanical keyboard." },
+                    { id: 19, name: "Men's Classic Leather Loafers", category: "Footwear", price: 4999, oldPrice: 6500, rating: 4.9, reviewsCount: 34, image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=600&q=80", description: "Slip-on formal leather shoe with padded sole." },
+                    { id: 20, name: "Stainless Steel Vacuum Flask (1L)", category: "Home & Living", price: 2499, oldPrice: 3200, rating: 4.8, reviewsCount: 55, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", description: "Keeps tea & water hot for 24 hours." },
+                    { id: 21, name: "Vit C Skin Brightening Serum", category: "Beauty & Personal Care", price: 1899, oldPrice: 2500, rating: 4.7, reviewsCount: 81, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80", description: "Antioxidant facial serum for dark spots." },
+                    { id: 22, name: "Canvas Laptop Backpack (15.6 inch)", category: "Accessories", price: 3299, oldPrice: 4200, rating: 4.6, reviewsCount: 48, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", description: "Water resistant college & office backpack." },
+                    { id: 23, name: "Gents Wash & Wear Shalwar Kameez", category: "Fashion", price: 4199, oldPrice: 5200, rating: 4.8, reviewsCount: 29, image: "https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=600&q=80", description: "Wrinkle-free premium wash and wear suit." },
+                    { id: 24, name: "Portable Bluetooth Speaker (20W)", category: "Electronics", price: 4899, oldPrice: 6200, rating: 4.7, reviewsCount: 67, image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80", description: "Stereo wireless speaker with LED lights." },
+                    { id: 25, name: "Handmade Khussa Shoes for Women", category: "Footwear", price: 2699, oldPrice: 3500, rating: 4.9, reviewsCount: 50, image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80", description: "Tilla work velvet Punjabi khussa." },
+                    { id: 26, name: "Non-Stick Ceramic Cookware Set (3 Pcs)", category: "Home & Living", price: 8999, oldPrice: 11500, rating: 4.8, reviewsCount: 43, image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80", description: "Durable scratch resistant pots & pans." },
+                    { id: 27, name: "Charcoal Deep Cleansing Face Wash", category: "Beauty & Personal Care", price: 1199, oldPrice: 1600, rating: 4.5, reviewsCount: 38, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80", description: "Oil control wash for fresh skin." },
+                    { id: 28, name: "Men's Stainless Steel Wristwatch", category: "Accessories", price: 5499, oldPrice: 7500, rating: 4.9, reviewsCount: 61, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80", description: "Analog quartz date display watch." },
+                    { id: 29, name: "Chiffon Dupatta 3-Piece Festive Suit", category: "Fashion", price: 5999, oldPrice: 7800, rating: 4.9, reviewsCount: 36, image: "https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=600&q=80", description: "Fancy threadwork unstitched suit." },
+                    { id: 30, name: "1080p Web Camera with Mic", category: "Electronics", price: 3199, oldPrice: 4200, rating: 4.4, reviewsCount: 28, image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80", description: "HD USB camera for online classes & Zoom." },
+                    { id: 31, name: "Men's Casual Leather Belt", category: "Accessories", price: 1499, oldPrice: 1999, rating: 4.8, reviewsCount: 44, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", description: "Pure cowhide leather belt with auto buckle." },
+                    { id: 32, name: "Cotton Bed Sheet Set (King Size)", category: "Home & Living", price: 3499, oldPrice: 4500, rating: 4.7, reviewsCount: 72, image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=600&q=80", description: "1 Bed sheet + 2 matching pillow covers." },
+                    { id: 33, name: "Matte Liquid Lipstick Set (Pack of 5)", category: "Beauty & Personal Care", price: 2199, oldPrice: 2999, rating: 4.6, reviewsCount: 89, image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80", description: "Long-wear non-drying nude lip colors." },
+                    { id: 34, name: "Sports Gym Duffle Bag", category: "Accessories", price: 2599, oldPrice: 3400, rating: 4.7, reviewsCount: 31, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", description: "Separate shoe compartment travel duffle." },
+                    { id: 35, name: "Men's Denim Jacket", category: "Fashion", price: 4499, oldPrice: 5999, rating: 4.8, reviewsCount: 23, image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80", description: "Classic rugged blue denim jacket." },
+                    { id: 36, name: "Wireless Ergonomic Mouse", category: "Electronics", price: 1899, oldPrice: 2499, rating: 4.6, reviewsCount: 54, image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80", description: "Silent click 2.4GHz optical mouse." },
+                    { id: 37, name: "Waterproof Winter Jackets for Men", category: "Fashion", price: 6499, oldPrice: 8500, rating: 4.9, reviewsCount: 40, image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80", description: "Fleece lined warm windproof parka jacket." },
+                    { id: 38, name: "Electric Juice Blender Bottle", category: "Home & Living", price: 2799, oldPrice: 3600, rating: 4.5, reviewsCount: 66, image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80", description: "USB rechargeable portable smoothie maker." },
+                    { id: 39, name: "Keratin Smooth Shampoo (500ml)", category: "Beauty & Personal Care", price: 1699, oldPrice: 2200, rating: 4.8, reviewsCount: 58, image: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80", description: "Sulfate free anti-frizz repair shampoo." },
+                    { id: 40, name: "Leather Crossbody Shoulder Bag", category: "Accessories", price: 2899, oldPrice: 3800, rating: 4.7, reviewsCount: 27, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80", description: "Compact multi-zipper travel sling bag." },
+                    { id: 41, name: "Men's Formal Dress Shoes (Black)", category: "Footwear", price: 5299, oldPrice: 6999, rating: 4.9, reviewsCount: 33, image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=600&q=80", description: "Polished Oxford formal shoes." },
+                    { id: 42, name: "Multi-Function Desk Lamp with Wireless Charging", category: "Electronics", price: 3999, oldPrice: 5200, rating: 4.7, reviewsCount: 41, image: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=600&q=80", description: "Dimmable LED lamp with 10W phone charging pad." },
+                    { id: 43, name: "Saffron Whitening Night Cream", category: "Beauty & Personal Care", price: 1999, oldPrice: 2700, rating: 4.6, reviewsCount: 49, image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80", description: "Pure saffron and almond extract night cream." },
+                    { id: 44, name: "Foldable Storage Boxes Set of 3", category: "Home & Living", price: 2299, oldPrice: 3000, rating: 4.7, reviewsCount: 35, image: "https://images.unsplash.com/photo-1591129841119-c48fc8e30807?auto=format&fit=crop&w=600&q=80", description: "Fabric wardrobe closet organizers." },
+                    { id: 45, name: "Digital Kitchen Food Scale", category: "Home & Living", price: 1599, oldPrice: 2100, rating: 4.8, reviewsCount: 62, image: "https://images.unsplash.com/photo-1590794056226-77ef3a8147e1?auto=format&fit=crop&w=600&q=80", description: "High precision 10kg LCD digital scale." }
                 ],
 
                 initStore() {
                     this.$nextTick(() => { lucide.createIcons(); });
-                    // Load persistent order data
                     const savedOrders = localStorage.getItem('rajput_store_orders');
                     if (savedOrders) {
                         this.allOrders = JSON.parse(savedOrders);
                     } else {
-                        // Sample order for demo
                         this.allOrders = [
                             {
                                 id: 'ORD-9821',
@@ -783,9 +660,7 @@
                     const item = this.cart.find(i => i.id === id);
                     if (item) {
                         item.qty += delta;
-                        if (item.qty <= 0) {
-                            this.removeFromCart(id);
-                        }
+                        if (item.qty <= 0) this.removeFromCart(id);
                     }
                 },
 
@@ -833,7 +708,6 @@
                     this.sortBy = 'featured';
                 },
 
-                // Order Checkout Action
                 submitOrder() {
                     const newOrderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
                     const itemsSummary = this.cart.map(i => `${i.name} (x${i.qty})`).join(', ');
@@ -850,23 +724,18 @@
                     this.allOrders.unshift(newOrder);
                     this.saveOrdersToStorage();
 
-                    alert(`🎉 Order Placed Successfully!\nYour Order Tracking ID: ${newOrderId}\nTotal: ${this.formatPKR(this.cartGrandTotal)}`);
+                    alert(`🎉 Order Placed Successfully!\nYour Tracking ID: ${newOrderId}\nTotal: ${this.formatPKR(this.cartGrandTotal)}`);
                     
                     this.cart = [];
                     this.showCheckoutModal = false;
-
-                    // Open My Orders view pre-filtered with phone
                     this.customerLookupPhone = this.checkoutForm.phone;
                     this.filterCustomerOrders();
                     this.showOrdersModal = true;
                 },
 
-                // Customer Tracking & Order Cancellation
                 openOrdersModal() {
                     this.showOrdersModal = true;
-                    if (this.customerLookupPhone) {
-                        this.filterCustomerOrders();
-                    }
+                    if (this.customerLookupPhone) this.filterCustomerOrders();
                 },
 
                 filterCustomerOrders() {
@@ -892,7 +761,6 @@
                     }
                 },
 
-                // Admin Dashboard Functions
                 openAdminModal() {
                     this.showAdminModal = true;
                 },
@@ -919,14 +787,14 @@
                 },
 
                 deleteSingleOrder(id) {
-                    if (confirm('Delete this order record permanently?')) {
+                    if (confirm('Delete order record permanently?')) {
                         this.allOrders = this.allOrders.filter(o => o.id !== id);
                         this.saveOrdersToStorage();
                     }
                 },
 
                 clearAllOrders() {
-                    if (confirm('Are you sure you want to delete all order records?')) {
+                    if (confirm('Delete all order records?')) {
                         this.allOrders = [];
                         this.saveOrdersToStorage();
                     }
